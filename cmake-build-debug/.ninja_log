@@ -1,0 +1,10 @@
+# ninja log v5
+1	983	6969458894956012	CMakeFiles/KleinRay.dir/main.cpp.obj	6f179eb36695e704
+2	1118	6969458195906485	CMakeFiles/KleinRay.dir/Image.cpp.obj	b112e4b8e2d3c1f
+983	1478	6969458896279326	KleinRay.exe	e2186d06bfd7b1d9
+2	195	6969477481397896	build.ninja	befbcec7cd9408db
+19	1133	6969477493481510	CMakeFiles/KleinRay.dir/Transform.cpp.obj	35ce7d6b1d0271da
+14	1139	6969477493539110	CMakeFiles/KleinRay.dir/Camera.cpp.obj	68adfdfdfec5011f
+8	1290	6969477495055227	CMakeFiles/KleinRay.dir/Image.cpp.obj	b112e4b8e2d3c1f
+1	1348	6969477495624200	CMakeFiles/KleinRay.dir/main.cpp.obj	6f179eb36695e704
+1348	2023	6969477498075730	KleinRay.exe	e5cb8e592fbec089
