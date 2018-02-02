@@ -7,35 +7,40 @@
 
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
-class Transform {
+class Transform
+{
 public:
-    Transform() {
+    static Transform buildFromLookAt(const glm::vec3 &eye, const glm::vec3 &center, const glm::vec3 &up);
+
+    Transform()
+    {
         localToWorld = glm::mat4(1.0f);
         worldToLocal = glm::mat4(1.0f);
     }
 
-    Transform(glm::mat4 localToWorld) {
+    Transform(glm::mat4 localToWorld)
+    {
         this->localToWorld = localToWorld;
         this->worldToLocal = glm::inverse(localToWorld);
     }
 
-    glm::vec3 transformPoint(glm::vec3 point) {
+    glm::vec3 transformPoint(glm::vec3 point)
+    {
         return glm::vec3(localToWorld * glm::vec4(point, 1.0f));
     }
 
-    glm::vec3 transformVector(glm::vec3 vector) {
+    glm::vec3 transformVector(glm::vec3 vector)
+    {
         return glm::vec3(localToWorld * glm::vec4(vector, 0.0f));
     }
 
-    glm::vec3 transformNormal(glm::vec3 normal) {
+    glm::vec3 transformNormal(glm::vec3 normal) const
+    {
         return glm::normalize(glm::vec3(glm::transpose(worldToLocal) * glm::vec4(normal, 0.0f)));
     }
-
-
 
     glm::mat4 localToWorld;
     glm::mat4 worldToLocal;
 };
 
-
-#endif //KLEINRAY_TRANSFORM_H
+#endif // KLEINRAY_TRANSFORM_H
