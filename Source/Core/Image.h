@@ -12,6 +12,7 @@ public:
     ~Image();
 
     void setPixel(int x, int y, float r, float g, float b);
+    void setPixel(int x, int y, const glm::vec3& color);
     void save(const char* filename);
 
     int width;

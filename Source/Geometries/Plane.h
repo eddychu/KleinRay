@@ -28,6 +28,14 @@ public:
     }
     glm::vec3 normal;
     float distance;
+
+    virtual glm::vec3 sample() const override {
+        return glm::vec3(0);
+    }
+
+    virtual float pdf(const glm::vec3 &point) const override {
+        return 0;
+    }
 };
 
 

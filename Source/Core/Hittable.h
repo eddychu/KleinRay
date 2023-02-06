@@ -15,6 +15,12 @@ struct HitRecord {
 };
 struct Hittable {
     virtual bool hit(const Ray &ray, HitRecord *record) const = 0;
+    virtual glm::vec3 sample() const {
+        return glm::vec3(0);
+    }
+    virtual float pdf(const glm::vec3 &point) const  {
+        return 0;
+    }
 };
 
 

@@ -3,7 +3,7 @@ project(KleinRay)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(KleinRay main.cpp Source/Core/Image.cpp Source/Core/Image.h Source/Core/Camera.cpp Source/Core/Camera.h Source/Core/Transform.cpp Source/Core/Transform.h Source/Core/Ray.h Source/Geometries/Mesh.cpp Source/Geometries/Mesh.h Source/Core/Scene.cpp Source/Core/Scene.h Source/Core/Hittable.h Source/Geometries/Sphere.cpp Source/Geometries/Sphere.h Source/Core/Renderer.cpp Source/Core/Renderer.h Source/Geometries/Plane.cpp Source/Geometries/Plane.h Source/Core/Material.h Source/Core/Node.cpp Source/Core/Node.h Source/Core/Light.h Source/Lights/PointLight.cpp Source/Lights/PointLight.h)
+add_executable(KleinRay main.cpp Source/Core/Image.cpp Source/Core/Image.h Source/Core/Camera.cpp Source/Core/Camera.h Source/Core/Transform.cpp Source/Core/Transform.h Source/Core/Ray.h Source/Core/Mesh.cpp Source/Core/Mesh.h Source/Core/Scene.cpp Source/Core/Scene.h Source/Core/Hittable.h Source/Geometries/Sphere.cpp Source/Geometries/Sphere.h Source/Core/Renderer.cpp Source/Core/Renderer.h Source/Geometries/Plane.cpp Source/Geometries/Plane.h Source/Core/Material.h Source/Core/Node.cpp Source/Core/Node.h  Source/Core/Sampling.h Source/Core/Integrator.h Source/Integrators/PathIntegrator.cpp Source/Integrators/PathIntegrator.h Source/Core/Light.cpp Source/Core/Light.h Source/Integrators/Whitted.cpp Source/Integrators/Whitted.h)
 
 
 find_package(glm CONFIG REQUIRED)

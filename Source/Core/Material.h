@@ -6,25 +6,50 @@
 #define KLEINRAY_MATERIAL_H
 #include "Core/Ray.h"
 #include "Core/Hittable.h"
+#include <Core/Sampling.h>
+struct SampleRecord {
+    glm::vec3 wi;
+    glm::vec3 wo;
+    float pdf;
+    glm::vec3 attenuation;
+};
+
 class Material {
 public:
-    glm::vec3 albedo;
-    float index;
-    float roughness;
-    float metallic;
-    float emittance;
-    Material(glm::vec3 albedo = glm::vec3(1.0, 1.0, 1.0), float index = 1.0f, float roughness = 0.0f, float metallic = 0.0f, float emittance = 0.0f) : albedo(albedo), index(index), roughness(roughness), metallic(metallic), emittance(emittance) {
 
+
+    virtual SampleRecord sample(const glm::vec3 &wo, const HitRecord& hitRecord) const {
+        SampleRecord record;
+        return record;
     }
 
-    glm::vec3 bsdf(const Ray &ray, const HitRecord &record, const Ray &outgoingRay) const {
-        return albedo;
-    }
-
-    glm::vec3 sample(const Ray &ray, const HitRecord &record, Ray *outgoingRay) const {
-        return albedo;
+    virtual float pdf(const glm::vec3 &wi, const glm::vec3 &wo, const HitRecord &hitRecord) const {
+        return 1;
     }
 };
 
+class Lambertian : public Material
+{
+public:
+    Lambertian(glm::vec3 albedo) : albedo(albedo) {}
 
-#endif //KLEINRAY_MATERIAL_H
+    SampleRecord sample(const glm::vec3 &wo, const HitRecord &hitRecord) const override
+    {
+        SampleRecord record;
+        glm::vec2 rv(randf(), randf());
+        record.wi = glm::normalize(sampleHemisphere(rv));
+        record.wo = wo;
+        record.pdf = pdf(record.wi, record.wo, hitRecord);
+        record.attenuation = albedo;
+        return record;
+    }
+
+    float pdf(const glm::vec3 &wi, const glm::vec3 &wo, const HitRecord &hitRecord) const override
+    {
+        // uniform sampling for now
+        return 1.0f / (2.0f * glm::pi<float>());
+    }
+
+    glm::vec3 albedo;
+};
+#endif // KLEINRAY_MATERIAL_H

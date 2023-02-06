@@ -23,6 +23,10 @@ void Image::setPixel(int x, int y, float r, float g, float b) {
     pixels[y * width + x] = glm::vec4(r, g, b, 1.0f);
 }
 
+void Image::setPixel(int x, int y, const glm::vec3 &color) {
+    pixels[y * width + x] = glm::vec4(color, 1.0f);
+}
+
 void Image::save(const char *filename) {
     std::vector<unsigned char> data(width * height * 4);
     for (int i = 0; i < width * height; i++) {

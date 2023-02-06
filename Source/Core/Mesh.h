@@ -11,16 +11,23 @@
 #include "Core/Ray.h"
 #include "Core/Hittable.h"
 #include <glm/gtx/intersect.hpp>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 struct Mesh : public Hittable
 {
     Mesh()
     {
     }
 
+
+
     bool hit(const Ray &ray, HitRecord *record) const override
     {
         bool hit = false;
         float closest = ray.tMax;
+
         for (int i = 0; i < indices.size(); i += 3)
         {
             glm::vec3 point;
@@ -31,11 +38,21 @@ struct Mesh : public Hittable
                     closest = t;
                     record->point = point;
                     record->t = t;
+
+                    record->normal = glm::normalize(glm::cross(vertices[indices[i + 1]] - vertices[indices[i]], vertices[indices[i + 2]] - vertices[indices[i]]));
                     hit = true;
                 }
             }
         }
         return hit;
+    }
+
+    virtual glm::vec3 sample() const override {
+        return glm::vec3(0);
+    }
+
+    virtual float pdf(const glm::vec3 &point) const override {
+        return 0;
     }
 
     std::vector<glm::vec3> vertices;

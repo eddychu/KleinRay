@@ -8,6 +8,8 @@
 #include <Core/Material.h>
 #include <Core/Hittable.h>
 #include <Core/Transform.h>
+#include <Core/Mesh.h>
+#include <string>
 class Node : public Hittable {
 public:
     Hittable* hittable;
@@ -15,6 +17,8 @@ public:
     Node(Hittable* hittable, Material* material) : hittable(hittable), material(material) {
 
     }
+
+
 
     bool hit(const Ray &ray, HitRecord *record) const override {
         if (hittable->hit(ray, record)) {

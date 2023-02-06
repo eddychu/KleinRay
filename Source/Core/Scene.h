@@ -6,8 +6,9 @@
 #define KLEINRAY_SCENE_H
 
 #include "Core/Node.h"
-#include "Core/Light.h"
 #include <vector>
+#include <Core/Light.h>
+
 struct Scene {
     bool hit(const Ray& ray, HitRecord *hitRecord) const {
         bool hit = false;
@@ -26,7 +27,6 @@ struct Scene {
     }
     std::vector<Node*> nodes;
     std::vector<Light*> lights;
-
 };
 
 
